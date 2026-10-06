@@ -23,8 +23,8 @@ public class GuiMain extends JFrame {
         super("ERverse — Emergency Room Triage & Resource Management");
 
         // Initialize Database and Triage System
-        DatabaseManager db = new DatabaseManager(Paths.get("data", "erverse.db"));
-        db.initializeSchema();
+        DatabaseManager db = new DatabaseManager("data/erverse.db");
+        db.open();
         triageSystem = new TriageSystem(db);
         db.loadInto(triageSystem);
 
@@ -222,7 +222,7 @@ public class GuiMain extends JFrame {
         bedsTableModel.setRowCount(0);
         for (Bed b : triageSystem.getBeds()) {
             bedsTableModel.addRow(new Object[]{
-                    b.getBedId(), b.getType().getLabel(), b.isOccupied() ? b.getOccupiedBy() : "FREE"
+                    b.getBedId(), b.getType().getLabel(), b.isOccupied() ? (b.getOccupiedByPatientName() != null ? b.getOccupiedByPatientName() : "Patient #" + b.getOccupiedByPatientId()) : "FREE"
             });
         }
 
@@ -238,8 +238,8 @@ public class GuiMain extends JFrame {
         ts.addBed(new Bed("BED-102", Bed.BedType.TRAUMA));
         ts.addBed(new Bed("BED-103", Bed.BedType.GENERAL));
         ts.addBed(new Bed("BED-104", Bed.BedType.GENERAL));
-        ts.addAmbulance(new Ambulance("AMB-01"));
-        ts.addAmbulance(new Ambulance("AMB-02"));
+        ts.addAmbulance(new Ambulance("AMB-01", 10));
+        ts.addAmbulance(new Ambulance("AMB-02", 15));
     }
 
     public static void main(String[] args) {
