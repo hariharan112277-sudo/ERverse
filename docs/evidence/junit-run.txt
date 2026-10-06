@@ -1,0 +1,55 @@
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m?[0m
+[36m??[0m [36mJUnit Platform Suite[0m [32m?[0m
+[36m??[0m [36mJUnit Jupiter[0m [32m?[0m
+[36m?  ??[0m [36mTriageOrderingTest[0m [32m?[0m
+[36m?  ?  ??[0m [34mHeap invariant survives a 500-patient surge: poll never returns a less severe pa...[0m [32m?[0m
+[36m?  ?  ??[0m [34mEqual severity falls back to arrival order (FIFO inside a band)[0m [32m?[0m
+[36m?  ?  ??[0m [34mQueue view is a copy: mutating it cannot corrupt the engine[0m [32m?[0m
+[36m?  ?  ??[0m [34mTC-01: a CRITICAL arrival overtakes an earlier LOW arrival[0m [32m?[0m
+[36m?  ?  ??[0m [34mOrdering is deterministic even for identical arrival stamps (id tie-break)[0m [32m?[0m
+[36m?  ??[0m [36mConcurrencyTest[0m [32m?[0m
+[36m?  ?  ??[0m [34mConcurrent treat/discharge keeps bed, doctor and patient state consistent[0m [32m?[0m
+[36m?  ?  ??[0m [34m2000 registrations from 8 simultaneous 'nurses' produce 2000 unique ids[0m [32m?[0m
+[36m?  ??[0m [36mResourceAllocationTest[0m [32m?[0m
+[36m?  ?  ??[0m [34mTrauma specialist is preferred for a critical patient[0m [32m?[0m
+[36m?  ?  ??[0m [34mTC-02: treat-next assigns doctor + bed and sets IN_TREATMENT[0m [32m?[0m
+[36m?  ?  ??[0m [34mLower-acuity patients never occupy the ICU while general beds exist[0m [32m?[0m
+[36m?  ?  ??[0m [34mtreat-next on an empty queue is a no-op message, not an exception[0m [32m?[0m
+[36m?  ?  ??[0m [34mCRITICAL patient is given the ICU bed, HIGH patient the trauma bay[0m [32m?[0m
+[36m?  ?  ??[0m [34mDoctor exhaustion raises NoDoctorsAvailableException and keeps the patient queue...[0m [32m?[0m
+[36m?  ?  ??[0m [34mBed exhaustion raises NoBedsAvailableException and keeps the patient queued[0m [32m?[0m
+[36m?  ??[0m [36mPersistenceTest[0m [32m?[0m
+[36m?  ?  ??[0m [34mRegistered patients and resources are restored after a restart[0m [32m?[0m
+[36m?  ?  ??[0m [34mEvery state change is written through prepared statements (audit trail present)[0m [32m?[0m
+[36m?  ?  ??[0m [34mInjection attempt in a free-text field is stored literally, not executed[0m [32m?[0m
+[36m?  ??[0m [36mReportExportTest[0m [32m?[0m
+[36m?  ?  ??[0m [34mFree-text fields with commas and quotes cannot break the CSV layout[0m [32m?[0m
+[36m?  ?  ??[0m [34mConsole report summarises queue, staffing and per-band counts[0m [32m?[0m
+[36m?  ?  ??[0m [34mTC-04: exporting produces ERverse_Daily_Report.csv with one row per patient[0m [32m?[0m
+[36m?  ??[0m [36mDischargeAndReassessmentTest[0m [32m?[0m
+[36m?     ??[0m [34mDischarging an unknown id raises a TriageException[0m [32m?[0m
+[36m?     ??[0m [34mRegistration validation rejects bad data with a specific exception[0m [32m?[0m
+[36m?     ??[0m [34mTC-03: discharge frees the assigned bed and doctor[0m [32m?[0m
+[36m?     ??[0m [34mReassessment promotes a waiting patient to the head of the queue[0m [32m?[0m
+[36m?     ??[0m [34mA second discharge (double click) fails loudly instead of corrupting state[0m [32m?[0m
+[36m?     ??[0m [34mVitals escalation sweep promotes only patients whose vitals demand it[0m [32m?[0m
+[36m?     ??[0m [34mReassessing downwards also re-heapifies correctly[0m [32m?[0m
+[36m??[0m [36mJUnit Vintage[0m [32m?[0m
+
+Test run finished after 556 ms
+[         9 containers found      ]
+[         0 containers skipped    ]
+[         9 containers started    ]
+[         0 containers aborted    ]
+[         9 containers successful ]
+[         0 containers failed     ]
+[        27 tests found           ]
+[         0 tests skipped         ]
+[        27 tests started         ]
+[         0 tests aborted         ]
+[        27 tests successful      ]
+[         0 tests failed          ]
+

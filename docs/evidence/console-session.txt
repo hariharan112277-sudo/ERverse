@@ -1,0 +1,290 @@
+[ERverse] Seeded a fresh ED roster: 3 doctors, 4 beds (1 ICU / 1 trauma / 2 general), 2 ambulances.
+[ERverse] Persistence: SQLite enabled -> /home/user/ERverse/data/erverse.db
+=================================================================
+   ERverse : Intelligent Emergency Room Triage & Resource System 
+   CS5304 Java Programming - PBL   |   console client             
+=================================================================
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:0  next:-  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: Patient name: Age: Symptoms: Select severity: 1-Critical  2-High  3-Medium  4-Low
+Choice: Vitals - heart rate bpm (blank if not recorded): Vitals - SpO2 % (blank if not recorded): Vitals - blood pressure e.g. 120/80 (blank if not recorded): Registered -> [ID:1001] Low Priority Case Age:22  Priority:LOW      Symptoms:Ankle sprain, minor       Arrived:14:54:04 Status:WAITING
+  Vitals: HR n/r, SpO2 n/r, BP n/r | queue position: 1
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:1  next:Low Priority Case  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: Patient name: Age: Symptoms: Select severity: 1-Critical  2-High  3-Medium  4-Low
+Choice: Vitals - heart rate bpm (blank if not recorded): Vitals - SpO2 % (blank if not recorded): Vitals - blood pressure e.g. 120/80 (blank if not recorded): Registered -> [ID:1002] Critical Case   Age:64  Priority:CRITICAL Symptoms:Cardiac arrest, unresponsive Arrived:14:54:04 Status:WAITING
+  Vitals: HR 128, SpO2 89%, BP 90/60 | queue position: 1
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:2  next:Critical Case  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: 
+--- Current Waiting Queue (highest priority first) ---
+Next to be treated: Critical Case
+   1. [ID:1002] Critical Case   Age:64  Priority:CRITICAL Symptoms:Cardiac arrest, unresponsive Arrived:14:54:04 Status:WAITING
+   2. [ID:1001] Low Priority Case Age:22  Priority:LOW      Symptoms:Ankle sprain, minor       Arrived:14:54:04 Status:WAITING
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:2  next:Critical Case  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: 
+Now treating: Critical Case (Priority: CRITICAL)
+  Assigned Doctor: Dr. Anitha Raj [D01] (Trauma)
+  Assigned Bed: BED-101 (ICU / resuscitation)
+
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:1  next:Low Priority Case  beds free:3  doctors free:2  en route:2
+------------------------------------------------------------------
+Enter choice: 
+--- Bed Occupancy ---
+Bed[BED-101] (ICU)              - OCCUPIED by Patient #1002 Critical Case since arrival
+Bed[BED-102] (TRAUMA)           - FREE
+Bed[BED-103] (GENERAL)          - FREE
+Bed[BED-104] (GENERAL)          - FREE
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:1  next:Low Priority Case  beds free:3  doctors free:2  en route:2
+------------------------------------------------------------------
+Enter choice: Patient id to discharge: Discharged: Critical Case (#1002)
+  Doctor D01 -> AVAILABLE
+  Bed BED-101 -> FREE
+
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:1  next:Low Priority Case  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: 
+--- Doctor Availability ---
+[D01] Dr. Anitha Raj      (Trauma      ) - AVAILABLE
+[D02] Dr. Vikram Shah     (Cardiology  ) - AVAILABLE
+[D03] Dr. Priya Menon     (General     ) - AVAILABLE
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:1  next:Low Priority Case  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: 
+--- Bed Occupancy ---
+Bed[BED-101] (ICU)              - FREE
+Bed[BED-102] (TRAUMA)           - FREE
+Bed[BED-103] (GENERAL)          - FREE
+Bed[BED-104] (GENERAL)          - FREE
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:1  next:Low Priority Case  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: CSV written: /home/user/ERverse/data/ERverse_Daily_Report.csv (2 patient rows)
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:1  next:Low Priority Case  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: 
+--- Recent audit events ---
+  2026-10-06 14:54:04  Registered Low Priority Case (#1001) as LOW
+  2026-10-06 14:54:04  Registered Critical Case (#1002) as CRITICAL
+  2026-10-06 14:54:04  Treated Critical Case (#1002)
+  2026-10-06 14:54:05  Discharged Critical Case (#1002)
+  2026-10-06 14:54:05  Exported daily report CSV (2 patients) -> data/ERverse_Daily_Report.csv
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:1  next:Low Priority Case  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: 
+=================== DAILY EMERGENCY REPORT ===================
+Generated at              : 2026-10-06 14:54:05
+Total patients registered : 2
+Waiting                   : 1
+In treatment              : 0
+Discharged                : 1
+--------------------------------------------------------------
+Waiting by severity       : CRITICAL=0  HIGH=0  MEDIUM=0  LOW=1  
+Beds                      : 4 free / 4 total
+Doctors                   : 3 available / 3 total
+Ambulances en route       : 2
+--------------------------------------------------------------
+Waiting queue (treatment order):
+   1. [ID:1001] Low Priority Case Age:22  Priority:LOW      Symptoms:Ankle sprain, minor       Arrived:14:54:04 Status:WAITING
+
+In treatment:
+  (none)
+
+Discharged today:
+  [ID:1002] Critical Case   Age:64  Priority:CRITICAL Symptoms:Cardiac arrest, unresponsive Arrived:14:54:04 Status:DISCHARGED
+==============================================================
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:1  next:Low Priority Case  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: Shutting down ERverse. Stay safe.

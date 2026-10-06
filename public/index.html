@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ERverse — Intelligent Emergency Room Triage &amp; Resource Management</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 43s-16-9.6-16-21A9.6 9.6 0 0 1 24 15a9.6 9.6 0 0 1 16 7c0 11.4-16 21-16 21z' fill='none' stroke='%23ff4d6d' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- animated glassmorphism backdrop -->
+  <div class="aurora" aria-hidden="true">
+    <span class="blob blob-a"></span>
+    <span class="blob blob-b"></span>
+    <span class="blob blob-c"></span>
+    <span class="grid-lines"></span>
+  </div>
+
+  <header class="topbar glass">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="34" height="34">
+          <defs>
+            <linearGradient id="pulseGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ff4d6d"/>
+              <stop offset="100%" stop-color="#4cc9f0"/>
+            </linearGradient>
+          </defs>
+          <path d="M24 43s-16-9.6-16-21A9.6 9.6 0 0 1 24 15a9.6 9.6 0 0 1 16 7c0 11.4-16 21-16 21z"
+                fill="none" stroke="url(#pulseGrad)" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M12 26h6l3-7 4 13 3-6h8" fill="none" stroke="url(#pulseGrad)"
+                stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <div>
+        <h1>ERverse</h1>
+        <p>Intelligent Emergency Room Triage &amp; Resource Management System</p>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <span id="connection" class="pill pill-live" title="Polling /api/dashboard every 5 s">
+        <span class="dot"></span> Live · 5 s poll
+      </span>
+      <span id="last-updated" class="muted">—</span>
+      <button id="btn-register" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        Register patient
+      </button>
+      <button id="btn-treat" class="btn">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h11l-3-3M16 12l-3 3M19 5v14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Treat next
+      </button>
+      <button id="btn-tick" class="btn" title="Advance the ambulance ETA simulation by one minute">+1 min</button>
+      <a class="btn" href="/api/report.csv" download>Export CSV</a>
+      <button id="btn-print" class="btn btn-ghost">Print</button>
+      <button id="btn-reset" class="btn btn-ghost" title="Clear patients and release resources (demo helper)">Reset</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="metrics" id="metrics" aria-label="Live ED metrics">
+      <!-- metric cards injected by app.js -->
+    </section>
+
+    <section class="layout">
+      <article class="panel glass panel-queue">
+        <header class="panel-head">
+          <h2>Live triage queue</h2>
+          <span class="hint">Ordered by <code>compareTo()</code> — severity rank, then arrival time</span>
+        </header>
+        <div id="queue" class="queue-list"></div>
+      </article>
+
+      <article class="panel glass panel-beds">
+        <header class="panel-head">
+          <h2>Bed occupancy</h2>
+          <span class="hint" id="bed-hint">—</span>
+        </header>
+        <div id="beds" class="bed-grid"></div>
+        <div class="legend" id="bed-legend"></div>
+      </article>
+
+      <article class="panel glass panel-docs">
+        <header class="panel-head">
+          <h2>Doctor roster</h2>
+          <span class="hint" id="doctor-hint">—</span>
+        </header>
+        <div id="doctors" class="roster"></div>
+      </article>
+
+      <article class="panel glass panel-amb">
+        <header class="panel-head">
+          <h2>Ambulance tracker</h2>
+          <span class="hint">ETAs count down with “+1 min”</span>
+        </header>
+        <div id="ambulances" class="amb-list"></div>
+      </article>
+
+      <article class="panel glass panel-wide">
+        <header class="panel-head">
+          <h2>Patient history</h2>
+          <div class="filter-row" id="history-filter">
+            <button class="chip chip-active" data-filter="all">All</button>
+            <button class="chip" data-filter="WAITING">Waiting</button>
+            <button class="chip" data-filter="IN_TREATMENT">In treatment</button>
+            <button class="chip" data-filter="DISCHARGED">Discharged</button>
+          </div>
+        </header>
+        <div class="table-wrap">
+          <table id="history">
+            <thead>
+              <tr>
+                <th>ID</th><th>Name</th><th>Age</th><th>Priority</th><th>Status</th>
+                <th>Doctor</th><th>Bed</th><th>Arrived</th><th>Waited</th><th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="panel glass panel-wide">
+        <header class="panel-head">
+          <h2>Audit trail</h2>
+          <span class="hint">Every registration, treatment, reassessment and discharge</span>
+        </header>
+        <div id="events" class="events"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>ERverse · CS5304 Java Programming PBL · Java engine + Express mirror</span>
+    <span id="footer-stats">—</span>
+  </footer>
+
+  <!-- registration modal -->
+  <div class="modal-overlay" id="modal" hidden>
+    <div class="modal glass" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header class="modal-head">
+        <h2 id="modal-title">Register new patient</h2>
+        <button class="icon-btn" id="modal-close" aria-label="Close">✕</button>
+      </header>
+      <form id="register-form" autocomplete="off">
+        <div class="field-row">
+          <label>Patient name
+            <input name="name" required maxlength="60" placeholder="e.g. J. Kumar">
+          </label>
+          <label>Age
+            <input name="age" type="number" min="1" max="120" required placeholder="64">
+          </label>
+        </div>
+        <label>Presenting symptoms
+          <input name="symptoms" maxlength="120" placeholder="e.g. Chest pain radiating to left arm">
+        </label>
+
+        <fieldset class="severity">
+          <legend>Triage severity <span class="hint">assessed by trained staff</span></legend>
+          <label class="sev sev-critical">
+            <input type="radio" name="priority" value="CRITICAL" checked>
+            <span class="sev-rank">1</span>
+            <span class="sev-text"><strong>CRITICAL</strong><small>Immediate life threat</small></span>
+          </label>
+          <label class="sev sev-high">
+            <input type="radio" name="priority" value="HIGH">
+            <span class="sev-rank">2</span>
+            <span class="sev-text"><strong>HIGH</strong><small>Treat within 15 min</small></span>
+          </label>
+          <label class="sev sev-medium">
+            <input type="radio" name="priority" value="MEDIUM">
+            <span class="sev-rank">3</span>
+            <span class="sev-text"><strong>MEDIUM</strong><small>Treat within 60 min</small></span>
+          </label>
+          <label class="sev sev-low">
+            <input type="radio" name="priority" value="LOW">
+            <span class="sev-rank">4</span>
+            <span class="sev-text"><strong>LOW</strong><small>Non urgent</small></span>
+          </label>
+        </fieldset>
+
+        <div class="field-row">
+          <label>Heart rate <small>bpm</small>
+            <input name="heartRate" type="number" min="20" max="250" placeholder="optional">
+          </label>
+          <label>SpO₂ <small>%</small>
+            <input name="spo2" type="number" min="0" max="100" placeholder="optional">
+          </label>
+          <label>Blood pressure
+            <input name="bloodPressure" placeholder="120/80">
+          </label>
+        </div>
+
+        <p class="hint" id="vitals-warning" hidden>
+          Recorded vitals indicate a higher band than the one selected — the engine will escalate on the vitals sweep.
+        </p>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Register &amp; triage</button>
+        </div>
+        <p class="form-error" id="form-error" hidden></p>
+      </form>
+    </div>
+  </div>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

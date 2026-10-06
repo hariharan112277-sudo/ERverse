@@ -1,0 +1,26 @@
+{
+  "name": "erverse",
+  "version": "1.0.0",
+  "description": "ERverse - Intelligent Emergency Room Triage and Resource Management System (Java core + Express REST mirror + glassmorphism dashboard)",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "node server/app.js",
+    "smoke": "node scripts/smoke-test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "triage",
+    "priority-queue",
+    "emergency-room",
+    "healthcare",
+    "express",
+    "java"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

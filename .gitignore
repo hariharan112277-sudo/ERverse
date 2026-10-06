@@ -1,0 +1,42 @@
+# ---------------------------------------------------------------------------
+# Build output
+# ---------------------------------------------------------------------------
+bin/
+testbin/
+out/
+*.class
+
+# ---------------------------------------------------------------------------
+# Runtime data (created on first run)
+#   data/erverse.db            - SQLite database written by the Java console
+#   data/erverse_data.json     - JSON state written by the Express API
+#   data/ERverse_Daily_Report.csv
+# ---------------------------------------------------------------------------
+data/
+
+# ---------------------------------------------------------------------------
+# Node
+# ---------------------------------------------------------------------------
+node_modules/
+npm-debug.log*
+package-lock.json.bak
+
+# ---------------------------------------------------------------------------
+# Dependencies downloaded by scripts/fetch-deps.sh
+#   (14 MB SQLite driver + 2.8 MB JUnit console launcher - keep them out of git)
+# ---------------------------------------------------------------------------
+lib/*.jar
+
+# ---------------------------------------------------------------------------
+# IDE / OS
+# ---------------------------------------------------------------------------
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+.DS_Store
+Thumbs.db
+
+# Generated screenshots are committed on purpose (docs/*.png) - not ignored.

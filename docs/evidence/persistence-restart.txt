@@ -1,0 +1,47 @@
+[ERverse] Restored session: 2 patient record(s), 3 doctor(s), 4 bed(s), 2 ambulance(s) from data/erverse.db
+[ERverse] Persistence: SQLite enabled -> /home/user/ERverse/data/erverse.db
+=================================================================
+   ERverse : Intelligent Emergency Room Triage & Resource System 
+   CS5304 Java Programming - PBL   |   console client             
+=================================================================
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:1  next:Low Priority Case  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: 
+--- Current Waiting Queue (highest priority first) ---
+Next to be treated: Low Priority Case
+   1. [ID:1001] Low Priority Case Age:22  Priority:LOW      Symptoms:Ankle sprain, minor       Arrived:14:54:04 Status:WAITING
+
+----------------------- MAIN MENU ------------------------------
+ 1. Register New Patient
+ 2. Treat Next Patient (Priority Queue)
+ 3. View Waiting Queue
+ 4. View Doctor Availability
+ 5. View Bed Occupancy
+ 6. Ambulance Control (ETA countdown / dispatch / pre-arrival)
+ 7. Reassess a Patient's Priority
+ 8. Discharge a Patient (release doctor + bed)
+ 9. Run Vitals Escalation Sweep
+10. View Daily Emergency Report
+11. Export Daily Report to CSV
+12. Show Recent Audit Events
+13. Load Demo Surge (for demonstration)
+ 0. Exit
+--- waiting:1  next:Low Priority Case  beds free:4  doctors free:3  en route:2
+------------------------------------------------------------------
+Enter choice: Shutting down ERverse. Stay safe.

@@ -1,0 +1,53 @@
+ERverse REST smoke test against http://127.0.0.1:3000
+
+  PASS  GET /api/health responds 200
+
+TC-01  Priority queue reordering
+  PASS  POST /api/patients returns 201
+  PASS  Critical patient is queue position 1
+  PASS  Low-acuity patient is behind
+  PASS  Queue is sorted by severity rank
+
+Ordering rule parity with Java Patient.compareTo()
+  PASS  Equal severity falls back to arrival order (FIFO)
+
+TC-02  Automatic resource allocation
+  PASS  POST /api/patients/treat-next returns 200
+  PASS  Doctor assigned to the critical patient
+  PASS  ICU bed assigned to the critical patient
+  PASS  Patient status becomes IN_TREATMENT
+
+Exception parity (Inherited from the Java TriageException hierarchy)
+  PASS  Blank name -> 400 INVALID_PATIENT_DATA
+  PASS  Impossible age -> 400 INVALID_PATIENT_DATA
+  PASS  Unknown patient -> 404 PATIENT_NOT_FOUND
+  PASS  Doctor exhaustion -> 409 NO_DOCTORS_AVAILABLE
+  PASS  A failed dispatch leaves the patient queued (not dropped)
+
+TC-03  Discharge and resource release
+  PASS  POST discharge returns 200
+  PASS  Bed returns to FREE
+  PASS  Doctor returns to AVAILABLE
+  PASS  Double discharge -> 409 ALREADY_DISCHARGED
+
+Reassessment re-heapifies the queue
+  PASS  Reassess returns 200
+  PASS  Reassessed waiting patient is now position 1
+  PASS  Queue head is the reassessed patient
+  PASS  Reassessing a patient already in treatment reports no queue position
+
+TC-04  CSV report generation
+  PASS  GET /api/report.csv returns text/csv
+  PASS  CSV has a header row
+  PASS  CSV has one row per patient plus a summary
+  PASS  CSV summary line present
+
+Ambulance ETA simulation
+  PASS  POST /api/ambulances/tick returns 200
+  PASS  Each en-route ETA decrements by exactly one minute
+
+Dashboard payload contract (polled every 5 s)
+  PASS  All metric cards present
+  PASS  Queue, doctors, beds, ambulances and events all returned
+
+31 passed, 0 failed

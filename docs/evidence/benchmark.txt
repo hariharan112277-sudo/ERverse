@@ -1,0 +1,22 @@
+ERverse - ordering data structure benchmark
+(severity rank first, arrival timestamp second, patient id last)
+
+queue size | PriorityQueue total | re-sorted ArrayList |     speed-up
+-----------|--------------------|--------------------|-------------
+         5 |           0.217 ms |           0.225 ms |       1.04x
+        50 |           1.815 ms |           0.518 ms |       0.29x
+       500 |           1.808 ms |           3.544 ms |       1.96x
+      5000 |           9.345 ms |         108.927 ms |      11.66x
+     50000 |          42.465 ms |       19448.717 ms |     458.00x
+
+Per-operation cost (n registrations + n drains, divide by 2n):
+queue size |      heap per op | ArrayList per op
+-----------|------------------|------------------
+         5 |         270.2 ns |         311.9 ns
+        50 |         271.0 ns |         395.1 ns
+       500 |         257.2 ns |        1862.1 ns
+      5000 |         288.6 ns |       10058.4 ns
+     50000 |         463.3 ns |      199672.3 ns
+
+Load factor (cost at 50 000 patients / cost at 5 patients).
+O(log n) should grow slowly; O(n log n) per operation grows sharply.
